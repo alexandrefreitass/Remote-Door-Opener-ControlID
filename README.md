@@ -1,7 +1,7 @@
 ## Aplicativo de Abertura Remota de Portas
 
 <div align="center">
-    <img src="https://github.com/alexandrefreitass/abrirporta/assets/109884524/b9dc215e-2f08-4a46-a900-74fb7830dd35" />
+    <img src="https://github.com/alexandrefreitass/abrirporta/assets/109884524/7a6c86ee-2c04-4dee-8892-5fa0ad355151" />
 </div>
 
 ### Visão Geral

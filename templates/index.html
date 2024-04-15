@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>API</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One" rel="stylesheet" type="text/css">
+    <script defer src="js/pyscript.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<style>
+
+    html, body {
+    margin: 0;
+    padding: 0;
+    }
+
+    html {
+    font-size: 10px;
+    background-color: #a9a9a9;
+    }
+
+    body {
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+    }
+
+    /* || typography */
+
+    h1, h2, h3 {
+    font-family: 'Sonsie One', cursive;
+    color: #2a2a2a;
+    }
+
+    p, input, li {
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: #2a2a2a;
+    }
+
+    h1 {
+    font-size: 4rem;
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 10px black;
+    }
+
+    h2 {
+    font-size: 3rem;
+    text-align: center;
+    }
+
+    h3 {
+    font-size: 2.2rem;
+    }
+
+    p, li {
+    font-size: 1.6rem;
+    line-height: 1.5;
+    }
+
+    /* || header layout */
+
+    nav, article, aside, footer {
+    background-color: white;
+    padding: 1%;
+    }
+
+    nav {
+    height: 50px;
+    background-color: #868686;
+    display: flex;
+    margin-bottom: 10px;
+    }
+
+    nav ul {
+    padding: 0;
+    list-style-type: none;
+    flex: 2;
+    display: flex;
+    }
+
+    nav li {
+    display: inline;
+    text-align: center;
+    flex: 1;
+    }
+
+    nav a {
+    display: inline-block;
+    font-size: 2rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: black;
+    }
+
+    nav form {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 2em;
+    }
+
+    input {
+    font-size: 1.6rem;
+    height: 32px;
+    }
+
+    input[type="search"] {
+    flex: 3;
+    }
+
+    input[type="submit"] {
+    flex: 1;
+    margin-left: 1rem;
+    background: #333;
+    border: 0;
+    color: white;
+    }
+
+    /* || main layout */
+
+    main {
+    display: flex;
+    }
+
+    article {
+    flex: 4;
+    }
+
+    aside {
+    flex: 1;
+    margin-left: 10px;
+    background-color: #868686;
+    }
+
+    aside li {
+    padding-bottom: 10px;
+    }
+
+    footer {
+    margin-top: 10px;
+    }
+
+    .button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    }
+</style>
+
+<body>
+   
+    <header>
+      <h1>Abertura de portas</h1>
+    </header>
+    
+    <nav>
+      <ul>
+        <li><a href="biometria">Home</a></li>
+        <li><a href="biometria">Cadastrar</a></li>
+        <li><a href="biometria">Projetos</a></li>
+        <li><a href="biometria">Contato</a></li>
+      </ul> 
+
+       <form>
+         <input type="search" name="q" placeholder="Pesquisar">
+         <input type="submit" value="Ir">
+       </form>
+     </nav>
+
+    <main>
+
+      <article>
+        <h2>API DE ABRIR PORTA</h2>
+
+        <p>Aplicação criada que permiti a abertura de portas do prédio do COPOM, para utiliza-la apenas é necessário que aperte o botão abaixo "ABRIR", logo após uma mensagem será exibida e terá um botão "Voltar" para retorna para página.</p>
+
+        <h3>ABRIR PORTA PRINCIPAL</h3>
+        <form action="/mostrar" method="POST">
+            <button class="button" type="submit">ABRIR</button>
+        </form>
+
+        <h3>Curiosidades</h3>
+
+        <p>Este aplicativo foi desenvolvido utilizando linguagem de programação Python e framework Flask, a partir da integração da API do controlador de acesso CONTROL ID.</p>
+
+        <p>API é a sigla em inglês para Application Programming Interface, ouinterface de programação de aplicações. As interfaces de programação de aplicativos (APIs) são conjuntos de ferramentas, definições e protocolos para a criação de aplicações de software. APIs conectam soluções e serviços, sem a necessidade de saber como esses elementos foram implementados.</p>
+      </article>
+
+      <aside>
+        <h2>COPOM</h2>
+
+        <ul>
+          <li><a href="biometria">Centro de Operações da PM</a></li>
+          <li><a href="biometria">Central de Atendimento 190</a></li>
+          <li><a href="biometria">Central de Despacho 190</a></li>
+          <li><a href="biometria">Ramais</a></li>
+        </ul>
+      </aside>
+
+    </main>
+
+    <footer>
+      <p>©Copyright 2023. Desenvolvid pela seção de Telemática do COPOM-CPI-2.</p>
+    </footer>
+
+</body>
+</html>

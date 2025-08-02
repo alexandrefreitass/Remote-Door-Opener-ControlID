@@ -1,122 +1,97 @@
-## Aplicativo de Abertura Remota de Portas
+# Remote Door Opener (Control ID)
 
 <div align="center">
-    <img src="https://github.com/alexandrefreitass/abrirporta/assets/109884524/7a6c86ee-2c04-4dee-8892-5fa0ad355151" />
+  <img src="https://github.com/user-attachments/assets/d8a2c283-c018-47d1-8531-353becf035d2" alt="Tela inicial do painel de controle" width="700">
 </div>
 
-### Visão Geral
-Este projeto é uma aplicação web desenvolvida para interagir com a API do Controlador de Acesso Control ID, permitindo a abertura de uma porta de maneira remota. Esta solução foi criada como alternativa a um botão físico defeituoso, cujo conserto não era viável. O aplicativo foi construído usando Python e Flask.
+<div align="center">
+  <img src="https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.11">
+  <img src="https://img.shields.io/badge/Flask-2.x-black?style=for-the-badge&logo=flask" alt="Flask 2.x">
+  <img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge" alt="MIT License">
+</div>
 
-**🆕 Melhorias Implementadas:**
-- ✅ Configurações de segurança com variáveis de ambiente
-- ✅ **REDESIGN COMPLETO:** Interface de painel de controle moderna
-- ✅ Tema dark com efeitos glassmorphism e gradientes
-- ✅ Integração da logo como elemento de design
-- ✅ Animações fluidas e feedback visual avançado
-- ✅ Sistema de loading e partículas interativas
-- ✅ Design totalmente responsivo para mobile
-- ✅ Página de sucesso com confetti e status detalhado
-- ✅ **Sistema de Erro Profissional:** Página de erro personalizada com troubleshooting
+## 📋 Visão Geral
+Aplicação web em **Python + Flask** que substitui o botão físico de um controlador **Control ID** e permite abrir a porta via navegador ou dispositivo móvel.  
+Foi criada após a quebra do botão original, oferecendo uma solução elegante, segura e responsiva. :contentReference[oaicite:0]{index=0}
 
-### Funcionalidades
-- 🚪 **Painel de Controle Moderno:** Interface centralizada tipo "command center"
-- 🔐 Interação segura com o Controlador de Acesso Control ID via API
-- ⚙️ Configuração flexível através de variáveis de ambiente
-- 🎨 **Design System Avançado:** Tema dark, glassmorphism, gradientes
-- 🎯 **UX Aprimorada:** Loading states, animações, feedback visual
-- 📱 **Mobile-First:** Design responsivo para todos os dispositivos
-- ✨ **Efeitos Visuais:** Partículas flutuantes, confetti de sucesso
-- 🖼️ **Branding Integrado:** Logo como watermark e elemento principal
-- 🚨 **Tratamento de Erros:** Página de erro profissional com troubleshooting detalhado
+---
 
-### Pré-requisitos
-- Python 3
-- Flask
-- Biblioteca Requests
-- python-dotenv (para gerenciamento de configurações)
+## ✨ Principais Funcionalidades
+- **Painel “command-center”** com tema _dark_, glassmorphism e gradientes  
+- **Abertura instantânea** da porta via API do Control ID  
+- **Configuração por variáveis de ambiente** (IP, login, porta etc.)  
+- **UX aprimorada**: animações, loading, partículas e confetti de sucesso  
+- **Tratamento de erros profissional** com página de troubleshooting dedicada  
+- **Design mobile-first** e totalmente responsivo :contentReference[oaicite:1]{index=1}  
 
-### Instalação
+---
 
-1. **Clone o repositório:**
-   ```bash
-   git clone [URL_do_repositório]
-   cd [nome_do_repositório]
-   ```
+## ⚙️ Tecnologias Utilizadas
+- **Python 3.11** + **Flask 2.x**  
+- **Requests** para chamadas HTTP  
+- **python-dotenv** para gestão de credenciais  
+- **HTML / CSS / JS Vanilla** (design system, partículas, confetti)  
+- **Control ID REST API** para comandos de abertura  
 
-2. **Instale as dependências:**
-   ```bash
-   pip install -r requirements.txt
-   ```
+---
 
-3. **Configure as variáveis de ambiente:**
-   - Copie o arquivo `config.env` e ajuste as configurações conforme necessário:
-   ```bash
-   # Edite o arquivo config.env com as configurações do seu dispositivo
-   DEVICE_IP=10.43.153.110          # IP do controlador ControlID
-   DEVICE_LOGIN=admin               # Login do dispositivo
-   DEVICE_PASSWORD=sua_senha_aqui   # Senha do dispositivo
-   FLASK_PORT=5000                  # Porta da aplicação (use 5000 se não tiver privilégios para porta 80)
-   ```
+## 🚀 Primeiros Passos
 
-4. **Execute a aplicação:**
-   ```bash
-   python main.py
-   ```
-
-5. **Acesse a aplicação:**
-   - Abra o navegador e vá para: `http://localhost:80` (ou a porta configurada)
-
-### Configurações de Segurança
-
-🔒 **Importante:** As credenciais do dispositivo agora são configuradas através do arquivo `config.env`, mantendo as informações sensíveis fora do código fonte.
-
-- `DEVICE_IP`: Endereço IP do controlador ControlID
-- `DEVICE_LOGIN`: Usuário para autenticação na API
-- `DEVICE_PASSWORD`: Senha para autenticação na API
-- `FLASK_PORT`: Porta onde a aplicação será executada (recomendado: 5000 para ambiente de desenvolvimento)
-
-### Estrutura do Projeto
-
+### 1 · Clonar o repositório
 ```
-📁 Remote Door ControlID/
-├── 📄 main.py              # Aplicação Flask principal
-├── 📄 config.env           # Configurações de ambiente (não versionar em produção)
-├── 📄 requirements.txt     # Dependências Python
-├── 📄 .gitignore           # Arquivos a ignorar no controle de versão
-├── 📁 templates/
-│   ├── 📄 index.html       # Página principal (aprimorada)
-│   ├── 📄 sucesso.html     # Página de confirmação (redesenhada)
-│   └── 📄 erro.html        # Página de erro profissional
-├── 📁 static/              # Arquivos estáticos (CSS, JS, imagens)
-│   ├── 📁 css/
-│   │   ├── 📄 style.css    # Estilos da página principal
-│   │   ├── 📄 sucesso.css  # Estilos da página de sucesso
-│   │   └── 📄 erro.css     # Estilos da página de erro
-│   └── 📁 js/
-│       └── 📄 pyscript.js  # Scripts JavaScript
-├── 📁 docs/                # Documentação e imagens
-└── 📄 README.md
+git clone https://github.com/alexandrefreitass/Remote-Door-Opener-ControlID.git
+cd Remote-Door-Opener-ControlID
 ```
+### 2 · Instalar dependências
+```
+pip install -r requirements.txt
+```
+### 3 · Configurar variáveis de ambiente
+Copie **`config.env.example`** para **`config.env`** e ajuste:
+```
+DEVICE_IP=10.43.153.110
+DEVICE_LOGIN=admin
+DEVICE_PASSWORD=SuaSenhaAqui
+FLASK_PORT=5000
+```
+### 4 · Executar a aplicação
+```
+python main.py
+```
+Acesse `http://localhost:5000` ou a porta que você definiu.
 
-### ✨ **Melhorias na Organização e Design:**
+---
 
-**📁 Estrutura de Código:**
-- **Separação de responsabilidades**: CSS e JS em arquivos dedicados na pasta `static`
-- **Estrutura padrão Flask**: Convenção do Flask para arquivos estáticos
-- **Manutenibilidade**: Código mais limpo e organizado
-- **Performance**: Arquivos CSS podem ser cacheados pelo navegador
+## 🗂️ Estrutura do Projeto
+```
+Remote-Door-Opener-ControlID/
+├── main.py
+├── config.env # NÃO versionar em produção
+├── requirements.txt
+├── templates/ # HTML (index, sucesso, erro)
+├── static/
+│ ├── css/ # style.css, sucesso.css, erro.css
+│ └── js/ # partículas, confetti
+├── docs/ # imagens e documentação
+└── README.md
+```
+---
 
-**🎨 Sistema de Design:**
-- **Design System**: Variáveis CSS centralizadas com tema consistente
-- **Tipografia**: Fonte Inter do Google Fonts para legibilidade premium
-- **Cores**: Paleta dark com acentos ciano e laranja vibrantes
-- **Layout**: Grid/Flexbox moderno com glassmorphism
-- **Animações**: Transições suaves e feedback visual em tempo real
-- **Responsividade**: Breakpoints mobile-first (480px, 768px)
+## 🔒 Boas Práticas de Segurança
+- Credenciais mantidas fora do código-fonte (`config.env`)  
+- `.gitignore` impede o commit de dados sensíveis  
+- Recomendado rodar atrás de **Nginx** ou **Apache** com HTTPS em produção.
 
-**🔧 Recursos Técnicos:**
-- **CSS Variables**: Sistema de design escalável e customizável
-- **Backdrop Filter**: Efeitos de blur para glassmorphism
-- **CSS Animations**: Keyframes para entrada, loading e interações
-- **JavaScript Vanilla**: Partículas, confetti e interações sem dependências
-- **Semantic HTML**: Estrutura acessível e SEO-friendly
+---
+
+## 🤝 Contribuições
+1. *Fork* do projeto  
+2. Crie uma *branch*: `git checkout -b feature/NovaFuncionalidade`  
+3. *Commit* das alterações  
+4. *Push* para o seu fork  
+5. Abra um **Pull Request**
+
+---
+
+## 📄 Licença
+Distribuído sob a licença **MIT**. Veja o arquivo **LICENSE** para detalhes.

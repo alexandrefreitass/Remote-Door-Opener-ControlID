@@ -1,0 +1,330 @@
+/* === PÁGINA DE SUCESSO - PAINEL DE CONTROLE === */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-dark: #1a1a2e;
+    --secondary-dark: #16213e;
+    --accent-cyan: #00d4ff;
+    --accent-orange: #ff6b35;
+    --success-green: #00ff88;
+    --text-light: #ffffff;
+    --text-muted: #a0a9c0;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --shadow-glow: 0 8px 32px rgba(0, 255, 136, 0.4);
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: 
+        linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(22, 33, 62, 0.95) 100%),
+        radial-gradient(circle at 30% 70%, rgba(0, 255, 136, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 70% 30%, rgba(0, 212, 255, 0.15) 0%, transparent 50%);
+    background-attachment: fixed;
+    background-size: cover;
+    min-height: 100vh;
+    color: var(--text-light);
+    overflow-x: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Background overlay para logo como watermark */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/logo.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 40vh;
+    opacity: 0.03;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* === CONTAINER PRINCIPAL === */
+
+.success-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 60px 40px;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        var(--shadow-glow);
+    position: relative;
+    animation: successEntry 1s ease-out;
+}
+
+@keyframes successEntry {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(30px);
+    }
+    50% {
+        transform: scale(1.05) translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* === ÍCONE DE SUCESSO === */
+
+.success-icon {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, var(--success-green), var(--accent-cyan));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 40px;
+    position: relative;
+    box-shadow: 
+        0 20px 40px rgba(0, 255, 136, 0.3),
+        inset 0 2px 0 rgba(255, 255, 255, 0.3);
+    animation: iconPulse 2s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 
+            0 20px 40px rgba(0, 255, 136, 0.3),
+            inset 0 2px 0 rgba(255, 255, 255, 0.3);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 
+            0 25px 50px rgba(0, 255, 136, 0.5),
+            inset 0 2px 0 rgba(255, 255, 255, 0.4);
+    }
+}
+
+.success-icon::before {
+    content: "✓";
+    color: white;
+    font-size: 60px;
+    font-weight: bold;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    animation: checkmark 0.6s ease-out 0.3s both;
+}
+
+@keyframes checkmark {
+    0% {
+        transform: scale(0) rotate(-45deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) rotate(0deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+/* === CONTEÚDO === */
+
+.success-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--success-green), var(--accent-cyan));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+    animation: titleSlide 0.8s ease-out 0.5s both;
+}
+
+@keyframes titleSlide {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.success-message {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    animation: messageSlide 0.8s ease-out 0.7s both;
+}
+
+@keyframes messageSlide {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* === INFORMAÇÕES DE STATUS === */
+
+.status-details {
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 40px;
+    animation: statusSlide 0.8s ease-out 0.9s both;
+}
+
+@keyframes statusSlide {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.status-item {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status-item:last-child {
+    margin-bottom: 0;
+}
+
+.status-value {
+    color: var(--success-green);
+    font-weight: 600;
+}
+
+/* === BOTÃO DE RETORNO === */
+
+.return-button {
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-orange));
+    border: none;
+    border-radius: 12px;
+    padding: 16px 32px;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 8px 20px rgba(0, 212, 255, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    animation: buttonSlide 0.8s ease-out 1.1s both;
+}
+
+@keyframes buttonSlide {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.return-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 12px 25px rgba(0, 212, 255, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.return-button:active {
+    transform: translateY(0);
+}
+
+/* === RESPONSIVIDADE === */
+
+@media (max-width: 768px) {
+    .success-container {
+        padding: 40px 30px;
+        margin: 10px;
+        max-width: none;
+    }
+    
+    .success-icon {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .success-icon::before {
+        font-size: 50px;
+    }
+    
+    .success-title {
+        font-size: 2rem;
+    }
+    
+    .success-message {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .success-container {
+        padding: 30px 20px;
+    }
+    
+    .success-icon {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .success-icon::before {
+        font-size: 40px;
+    }
+    
+    .success-title {
+        font-size: 1.8rem;
+    }
+    
+    .success-message {
+        font-size: 1rem;
+    }
+    
+    .return-button {
+        padding: 14px 28px;
+        font-size: 0.9rem;
+    }
+}

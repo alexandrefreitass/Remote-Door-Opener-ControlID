@@ -1,217 +1,117 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
     <meta charset="utf-8">
-    <title>API</title>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One" rel="stylesheet" type="text/css">
-    <script defer src="js/pyscript.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Controle - Abertura de Portas</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}">
+    <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- Scripts -->
+    <script defer src="{{ url_for('static', filename='js/pyscript.js') }}"></script>
 </head>
 
-<style>
-
-    html, body {
-    margin: 0;
-    padding: 0;
-    }
-
-    html {
-    font-size: 10px;
-    background-color: #a9a9a9;
-    }
-
-    body {
-    width: 70%;
-    margin: 0 auto;
-    text-align: center;
-    }
-
-    /* || typography */
-
-    h1, h2, h3 {
-    font-family: 'Sonsie One', cursive;
-    color: #2a2a2a;
-    }
-
-    p, input, li {
-    font-family: 'Open Sans Condensed', sans-serif;
-    color: #2a2a2a;
-    }
-
-    h1 {
-    font-size: 4rem;
-    text-align: center;
-    color: white;
-    text-shadow: 2px 2px 10px black;
-    }
-
-    h2 {
-    font-size: 3rem;
-    text-align: center;
-    }
-
-    h3 {
-    font-size: 2.2rem;
-    }
-
-    p, li {
-    font-size: 1.6rem;
-    line-height: 1.5;
-    }
-
-    /* || header layout */
-
-    nav, article, aside, footer {
-    background-color: white;
-    padding: 1%;
-    }
-
-    nav {
-    height: 50px;
-    background-color: #868686;
-    display: flex;
-    margin-bottom: 10px;
-    }
-
-    nav ul {
-    padding: 0;
-    list-style-type: none;
-    flex: 2;
-    display: flex;
-    }
-
-    nav li {
-    display: inline;
-    text-align: center;
-    flex: 1;
-    }
-
-    nav a {
-    display: inline-block;
-    font-size: 2rem;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: black;
-    }
-
-    nav form {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    height: 100%;
-    padding: 0 2em;
-    }
-
-    input {
-    font-size: 1.6rem;
-    height: 32px;
-    }
-
-    input[type="search"] {
-    flex: 3;
-    }
-
-    input[type="submit"] {
-    flex: 1;
-    margin-left: 1rem;
-    background: #333;
-    border: 0;
-    color: white;
-    }
-
-    /* || main layout */
-
-    main {
-    display: flex;
-    }
-
-    article {
-    flex: 4;
-    }
-
-    aside {
-    flex: 1;
-    margin-left: 10px;
-    background-color: #868686;
-    }
-
-    aside li {
-    padding-bottom: 10px;
-    }
-
-    footer {
-    margin-top: 10px;
-    }
-
-    .button {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    }
-</style>
-
 <body>
-   
-    <header>
-      <h1>Abertura de portas</h1>
-    </header>
-    
-    <nav>
-      <ul>
-        <li><a href="biometria">Home</a></li>
-        <li><a href="biometria">Cadastrar</a></li>
-        <li><a href="biometria">Projetos</a></li>
-        <li><a href="biometria">Contato</a></li>
-      </ul> 
+    <div class="app-container">
+        <div class="control-panel">
+            <!-- Header com Logo -->
+            <header class="app-header">
+                <div class="app-logo">
+                    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo COPOM" />
+                </div>
+                <h1 class="app-title">Controle de Acesso</h1>
+                <p class="app-subtitle">Sistema de abertura remota para o prédio do COPOM</p>
+            </header>
 
-       <form>
-         <input type="search" name="q" placeholder="Pesquisar">
-         <input type="submit" value="Ir">
-       </form>
-     </nav>
+            <!-- Seção de Ação Principal -->
+            <section class="action-section">
+                <div class="status-indicator">
+                    Sistema Online - Pronto para uso
+                </div>
+                
+                <form action="/mostrar" method="POST" id="accessForm">
+                    <button type="submit" class="main-button" id="accessButton">
+                        <span class="loading-spinner"></span>
+                        <span class="button-text">🚪 Abrir Porta Principal</span>
+                    </button>
+                </form>
+            </section>
 
-    <main>
+            <!-- Informações Adicionais -->
+            <section class="info-section">
+                <div class="info-item">
+                    <strong>Sistema:</strong> Integração com API ControlID
+                </div>
+                <div class="info-item">
+                    <strong>Localização:</strong> Prédio Principal - Porta de Acesso
+                </div>
+                <div class="info-item">
+                    <strong>Desenvolvido por:</strong> Seção de Telemática - COPOM-CPI-2
+                </div>
+            </section>
+        </div>
+    </div>
 
-      <article>
-        <h2>API DE ABRIR PORTA</h2>
+    <script>
+        // Sistema de feedback visual para o botão
+        document.getElementById('accessForm').addEventListener('submit', function(e) {
+            const button = document.getElementById('accessButton');
+            button.classList.add('loading');
+            button.disabled = true;
+            
+            // Simula o tempo de processamento
+            setTimeout(() => {
+                // O formulário será submetido normalmente
+            }, 100);
+        });
 
-        <p>Aplicação criada que permiti a abertura de portas do prédio do COPOM, para utiliza-la apenas é necessário que aperte o botão abaixo "ABRIR", logo após uma mensagem será exibida e terá um botão "Voltar" para retorna para página.</p>
+        // Efeito de partículas sutil (opcional)
+        function createFloatingParticle() {
+            const particle = document.createElement('div');
+            particle.style.cssText = `
+                position: fixed;
+                width: 4px;
+                height: 4px;
+                background: rgba(0, 212, 255, 0.6);
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 1;
+                left: ${Math.random() * 100}vw;
+                top: 100vh;
+                animation: floatUp ${3 + Math.random() * 4}s linear forwards;
+            `;
+            
+            document.body.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 7000);
+        }
 
-        <h3>ABRIR PORTA PRINCIPAL</h3>
-        <form action="/mostrar" method="POST">
-            <button class="button" type="submit">ABRIR</button>
-        </form>
+        // Adiciona estilo para animação das partículas
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes floatUp {
+                to {
+                    transform: translateY(-100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
 
-        <h3>Curiosidades</h3>
-
-        <p>Este aplicativo foi desenvolvido utilizando linguagem de programação Python e framework Flask, a partir da integração da API do controlador de acesso CONTROL ID.</p>
-
-        <p>API é a sigla em inglês para Application Programming Interface, ouinterface de programação de aplicações. As interfaces de programação de aplicativos (APIs) são conjuntos de ferramentas, definições e protocolos para a criação de aplicações de software. APIs conectam soluções e serviços, sem a necessidade de saber como esses elementos foram implementados.</p>
-      </article>
-
-      <aside>
-        <h2>COPOM</h2>
-
-        <ul>
-          <li><a href="biometria">Centro de Operações da PM</a></li>
-          <li><a href="biometria">Central de Atendimento 190</a></li>
-          <li><a href="biometria">Central de Despacho 190</a></li>
-          <li><a href="biometria">Ramais</a></li>
-        </ul>
-      </aside>
-
-    </main>
-
-    <footer>
-      <p>©Copyright 2023. Desenvolvid pela seção de Telemática do COPOM-CPI-2.</p>
-    </footer>
-
+        // Cria partículas ocasionalmente
+        setInterval(createFloatingParticle, 3000);
+    </script>
 </body>
 </html>

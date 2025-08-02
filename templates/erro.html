@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Falha na Comunicação - Painel de Controle</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}">
+    <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/erro.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <div class="control-panel">
+            <!-- Header com Logo -->
+            <header class="app-header">
+                <div class="app-logo">
+                    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo COPOM" />
+                </div>
+                <h1 class="app-title">Controle de Acesso</h1>
+                <p class="app-subtitle">Sistema de abertura remota para o prédio do COPOM</p>
+            </header>
+
+            <!-- Ícone de Erro -->
+            <div class="error-icon"></div>
+            
+            <!-- Título Principal -->
+            <h1 class="error-title">Falha na Comunicação</h1>
+            
+            <!-- Mensagem de Erro -->
+            <p class="error-message">
+                Não foi possível estabelecer conexão com o dispositivo de controle.<br>
+                Verifique as informações abaixo para solucionar o problema.
+            </p>
+            
+            <!-- Seção de Troubleshooting -->
+            <div class="troubleshooting-section">
+                <h3 class="troubleshooting-title">🔍 O que pode ter acontecido?</h3>
+                
+                <div class="troubleshooting-list">
+                    <div class="troubleshooting-item">
+                        <div class="item-icon">🌐</div>
+                        <div class="item-content">
+                            <strong>Problema de Rede:</strong>
+                            <span>O equipamento pode estar desligado ou sem conexão com a rede.</span>
+                        </div>
+                    </div>
+                    
+                    <div class="troubleshooting-item">
+                        <div class="item-icon">⚙️</div>
+                        <div class="item-content">
+                            <strong>Configuração:</strong>
+                            <span>Pode haver alguma configuração pendente no próprio equipamento.</span>
+                        </div>
+                    </div>
+                    
+                    <div class="troubleshooting-item">
+                        <div class="item-icon">📍</div>
+                        <div class="item-content">
+                            <strong>Endereço IP:</strong>
+                            <span>O IP do equipamento pode estar incorreto.</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Informação do IP -->
+                <div class="ip-info">
+                    <div class="ip-label">Sistema tentando conectar ao endereço:</div>
+                    <div class="ip-address">{{ ip_do_dispositivo }}</div>
+                    <div class="ip-hint">Confirme se este endereço está correto nas configurações</div>
+                </div>
+            </div>
+            
+            <!-- Botões de Ação -->
+            <div class="action-section">
+                <a href="/" class="retry-button">
+                    🔄 Tentar Novamente
+                </a>
+                <a href="/" class="back-button">
+                    ← Voltar ao Painel
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Efeito de partículas de erro (opcional)
+        function createErrorParticle() {
+            const particle = document.createElement('div');
+            const colors = ['#ff4757', '#ff6b35', '#ff3838'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            particle.style.cssText = `
+                position: fixed;
+                width: 4px;
+                height: 4px;
+                background: ${randomColor};
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 1;
+                left: ${Math.random() * 100}vw;
+                top: 100vh;
+                animation: errorFloat ${3 + Math.random() * 4}s linear forwards;
+                opacity: 0.7;
+            `;
+            
+            document.body.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 7000);
+        }
+
+        // Adiciona estilo para animação das partículas de erro
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes errorFloat {
+                to {
+                    transform: translateY(-100vh) rotate(-360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Cria partículas ocasionalmente
+        setInterval(createErrorParticle, 4000);
+
+        // Auto-retry após 30 segundos (opcional - comentado por segurança)
+        // setTimeout(() => {
+        //     window.location.href = '/';
+        // }, 30000);
+    </script>
+</body>
+</html>
